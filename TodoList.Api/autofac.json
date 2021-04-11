@@ -1,0 +1,20 @@
+﻿{
+  "defaultAssembly": "TodoList.Api",
+  "modules": [
+    {
+      "type": "TodoList.Application.ApplicationModule, TodoList.Application",
+      "properties": {
+      }
+    },
+    {
+      "type": "TodoList.Application.MediatorModule, TodoList.Application",
+      "properties": {
+      }
+    },
+    {
+      "type": "TodoList.Infrastructure.InfrastructureModule, TodoList.Infrastructure",
+      "properties": {
+      }
+    }
+  ]
+}

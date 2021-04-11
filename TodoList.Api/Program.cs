@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
@@ -12,14 +15,23 @@ namespace TodoList.Api
             CreateHostBuilder(args).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+        public static IWebHostBuilder CreateHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .ConfigureKestrel((context, options) =>
                 {
-                    webBuilder.UseKestrel();
-                    webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
-                    webBuilder.UseIISIntegration();
-                    webBuilder.UseStartup<Startup>();
-                });
+                })
+                .ConfigureAppConfiguration((builderContext, config) =>
+                {
+                    IWebHostEnvironment env = builderContext.HostingEnvironment;
+                    config.AddJsonFile("appsettings.json");
+                    config.AddJsonFile($"appsettings.{env.EnvironmentName}.json");
+                    config.AddJsonFile("autofac.json");
+                    config.AddEnvironmentVariables();
+
+                })
+                .ConfigureServices(services => services.AddAutofac());
     }
 }

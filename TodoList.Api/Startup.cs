@@ -1,19 +1,35 @@
+using Autofac;
+using Autofac.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TodoList.Infrastructure;
 
 namespace TodoList.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Environment { get; }
+
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new ConfigurationModule(Configuration));
+
+            var persistenceModule = new InfrastructureModule();
+            builder.RegisterModule(persistenceModule);
+        }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -22,6 +38,22 @@ namespace TodoList.Api
             {
                 options.EnableForHttps = true;
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.IgnoreNullValues = true;
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+
             services.AddHttpContextAccessor();
         }
 
@@ -33,6 +65,9 @@ namespace TodoList.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseRouting();
+
+            app.UseCors("AllowAllOrigins");
             app.UseResponseCompression();
             app.UseEndpoints(endpoints =>
             {

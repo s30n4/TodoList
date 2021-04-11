@@ -2,7 +2,7 @@
 using FluentValidation;
 using System;
 
-namespace TodoList.Application.Factories
+namespace TodoList.Application.Common.Factories
 {
     public class AutofacValidatorFactory : ValidatorFactoryBase
     {

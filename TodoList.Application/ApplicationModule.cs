@@ -2,7 +2,7 @@
 using AutoMapper;
 using FluentValidation;
 using System.Collections.Generic;
-using TodoList.Application.Factories;
+using TodoList.Application.Common.Factories;
 
 namespace TodoList.Application
 {

@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TodoList.Application.TodoLists.Queries;
@@ -20,7 +19,7 @@ namespace TodoList.Api.Controllers
 
 
         [HttpGet("pending")]
-        public async Task<ActionResult> GetPendingTodoListItems([FromQuery] GetTodoListsQuery request)
+        public async Task<ActionResult> GetPendingTodoListItems([FromQuery] GetTodoListItemsQuery request)
         {
             var result = await _mediator.Send(request);
 
@@ -28,7 +27,7 @@ namespace TodoList.Api.Controllers
         }
 
         [HttpGet("done")]
-        public async Task<ActionResult> GetDoneTodoListItems([FromQuery] GetTodoListsQuery request)
+        public async Task<ActionResult> GetDoneTodoListItems([FromQuery] GetTodoListItemsQuery request)
         {
             var result = await _mediator.Send(request);
 

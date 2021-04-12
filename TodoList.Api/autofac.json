@@ -11,10 +11,10 @@
       "properties": {
       }
     },
-    {
-      "type": "TodoList.Infrastructure.InfrastructureModule, TodoList.Infrastructure",
-      "properties": {
-      }
-    }
+    //{
+    //  "type": "TodoList.Infrastructure.InfrastructureModule, TodoList.Infrastructure",
+    //  "properties": {
+    //  }
+    //}
   ]
 }

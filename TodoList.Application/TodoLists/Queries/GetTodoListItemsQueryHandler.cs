@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TodoList.Application.Common.Extensions;
@@ -9,6 +7,7 @@ using TodoList.Application.Common.Interfaces;
 using TodoList.Domain.TodoListManagement.Interfaces;
 using TodoList.Application.TodoLists.Dtos;
 using TodoList.Domain.TodoListManagement.Entities;
+using System.Collections.Generic;
 
 namespace TodoList.Application.TodoLists.Queries
 {
@@ -24,17 +23,15 @@ namespace TodoList.Application.TodoLists.Queries
         public async Task<IPagedList<TodoListItemDto>> Handle(GetTodoListItemsQuery request, CancellationToken cancellationToken)
         {
 
-            var query = _todoListItemsRepository.GetAllTodoListItems()
-                .Where(tli => tli.Status == (TodoListItemStatuses)request.Status);
-
-            var count = await query.CountAsync(cancellationToken: cancellationToken);
+            var query =await _todoListItemsRepository
+                .GetAllTodoListItemsByStatusAsync((TodoListItemStatuses)request.Status, request.PageNumber, request.PageSize, cancellationToken);
 
 
-            var results = await _mapper
-                .ProjectTo<TodoListItemDto>(query
-                .OrderBy(tli => tli.DueDate).ThenBy(tli => tli.Name))
-                .SkipToPage(request.PageNumber, request.PageSize)
-                .ToListAsync(cancellationToken: cancellationToken);
+            var count = await _todoListItemsRepository.CountAllTodoListItemsByStatusAsync((TodoListItemStatuses)request.Status, cancellationToken: cancellationToken);
+
+
+            var results = _mapper
+                .Map<List<TodoListItemDto>>(query);
 
             return results.ToPagedList(request.PageNumber, request.PageSize, count);
 

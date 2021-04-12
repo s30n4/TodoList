@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using TodoList.Domain.TodoListManagement.Entities;
 using TodoList.Domain.TodoListManagement.Interfaces;
-using TodoList.Infrastructure.Abstracts;
 using MediatR;
+using TodoList.Persistence.Abstracts;
 
-namespace TodoList.Infrastructure.TodoListManagement.Repositories
+namespace TodoList.Persistence.TodoListManagement.Repositories
 {
     public class TodoListItemsRepository : RepositoryBase<TodoListItem>, ITodoListItemsRepository
     {

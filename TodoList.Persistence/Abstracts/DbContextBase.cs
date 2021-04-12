@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace TodoList.Infrastructure.Abstracts
+namespace TodoList.Persistence.Abstracts
 {
     public abstract class DbContextBase : DbContext
     {

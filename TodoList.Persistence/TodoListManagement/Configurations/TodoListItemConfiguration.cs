@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TodoList.Domain.TodoListManagement.Entities;
 
-namespace TodoList.Infrastructure.TodoListManagement.Configurations
+namespace TodoList.Persistence.TodoListManagement.Configurations
 {
     public class TodoListItemConfiguration : IEntityTypeConfiguration<TodoListItem>
     {

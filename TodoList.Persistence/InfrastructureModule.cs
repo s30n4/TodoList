@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using TodoList.Domain.TodoListManagement.Entities;
-using TodoList.Infrastructure.TodoListManagement;
+using TodoList.Persistence.TodoListManagement;
 
-namespace TodoList.Infrastructure
+namespace TodoList.Persistence
 {
-    public class InfrastructureModule : Module
+    public class PersistenceModule : Module
     {
-        public InfrastructureModule()
+        public PersistenceModule()
         {
         }
         protected override void Load(ContainerBuilder builder)

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TodoList.Infrastructure;
+using TodoList.Persistence;
 
 namespace TodoList.Api
 {
@@ -26,7 +26,7 @@ namespace TodoList.Api
         {
             builder.RegisterModule(new ConfigurationModule(Configuration));
 
-            var persistenceModule = new InfrastructureModule();
+            var persistenceModule = new PersistenceModule();
             builder.RegisterModule(persistenceModule);
         }
 

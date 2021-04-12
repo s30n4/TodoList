@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using TodoList.Domain.TodoListManagement.Entities;
-using TodoList.Infrastructure.Abstracts;
-using TodoList.Infrastructure.TodoListManagement.Configurations;
+using TodoList.Persistence.Abstracts;
+using TodoList.Persistence.TodoListManagement.Configurations;
 
-namespace TodoList.Infrastructure.TodoListManagement
+namespace TodoList.Persistence.TodoListManagement
 {
     public class TodoListManagementDbContext : DbContextBase
     {

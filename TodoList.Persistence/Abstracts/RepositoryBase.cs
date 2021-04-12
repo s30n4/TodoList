@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TodoList.Domain.Abstracts;
 using TodoList.Domain.Common.Interfaces;
 
-namespace TodoList.Infrastructure.Abstracts
+namespace TodoList.Persistence.Abstracts
 {
     public abstract class RepositoryBase<TEntity> : IRepository<TEntity> where TEntity : class
     {

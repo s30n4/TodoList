@@ -8,6 +8,7 @@ using TodoList.Application.Common.Extensions;
 using TodoList.Application.Common.Interfaces;
 using TodoList.Domain.TodoListManagement.Interfaces;
 using TodoList.Application.TodoLists.Dtos;
+using TodoList.Domain.TodoListManagement.Entities;
 
 namespace TodoList.Application.TodoLists.Queries
 {
@@ -24,7 +25,7 @@ namespace TodoList.Application.TodoLists.Queries
         {
 
             var query = _todoListItemsRepository.GetAllTodoListItems()
-                .Where(tli => tli.Status == request.Status);
+                .Where(tli => tli.Status ==(TodoListItemStatuses) request.Status);
 
             var count = await query.CountAsync(cancellationToken: cancellationToken);
 

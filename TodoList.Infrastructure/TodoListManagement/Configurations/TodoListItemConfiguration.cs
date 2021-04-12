@@ -10,7 +10,9 @@ namespace TodoList.Infrastructure.TodoListManagement.Configurations
         {
             builder.ToTable("TodoListItems")
                 .HasKey(a => a.TodoListItemId);
-           
+
+            builder.Property(a => a.TodoListItemId).ValueGeneratedNever();
+
             //builder.HasQueryFilter(a => !a.DateDeleted.HasValue);
         }
     }

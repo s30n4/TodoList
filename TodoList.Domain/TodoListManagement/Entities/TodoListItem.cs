@@ -15,7 +15,7 @@ namespace TodoList.Domain.TodoListManagement.Entities
 
         public TodoListItemStatuses Status { get; private set; }
 
-        public DateTime? CompletedDateTime { get; private set; }
+        public DateTime? CompletedOn { get; private set; }
 
         public TodoListItem()
         {
@@ -40,9 +40,9 @@ namespace TodoList.Domain.TodoListManagement.Entities
 
         public void MarkAsDone()
         {
-            if (!CompletedDateTime.HasValue)
+            if (!CompletedOn.HasValue)
             {
-                CompletedDateTime = DateTime.UtcNow;
+                CompletedOn = DateTime.UtcNow;
                 Status = TodoListItemStatuses.Done;
             }
         }

@@ -22,9 +22,6 @@ namespace TodoList.Infrastructure.TodoListManagement
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            modelBuilder.Entity<TodoListItem>().HasData(new TodoListItem("Test 1", "Description 1", DateTime.Now));
-
             modelBuilder.ApplyConfiguration(new TodoListItemConfiguration());
 
             base.OnModelCreating(modelBuilder);

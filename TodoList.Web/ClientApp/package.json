@@ -29,6 +29,7 @@
     "font-awesome": "^4.7.0",
     "guid-typescript": "^1.0.9",
     "moment": "^2.26.0",
+    "ngx-pagination": "^5.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
     "validator": "^13.1.1",

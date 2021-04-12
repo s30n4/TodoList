@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppSettingsService } from '../../../core/services/app-setttings.service';
 import { TodoListItem } from './models/todo-list-item.model';
+import { PagedQueryResult } from '../../../core/models/paged-query-result.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,13 @@ export class TodoListsService {
   ) { }
 
 
-  public getPendingTodoListItems( pageNumber: number, pageSize: number, sortExpression:string, orderByDescending:boolean) {
-    return this.http.get<TodoListItem[]>
+  public getPendingTodoListItems(pageNumber: number, pageSize: number, sortExpression: string, orderByDescending: boolean) {
+    return this.http.get<PagedQueryResult<TodoListItem>>
       (`${this.todoListsUrl}/pending?pageNumber=${pageNumber}&pageSize=${pageSize}&sortExpression=${sortExpression}&orderByDescending=${orderByDescending}`);
   }
 
   public getDoneTodoListItems(pageNumber: number, pageSize: number, sortExpression: string, orderByDescending: boolean) {
-    return this.http.get<TodoListItem[]>
+    return this.http.get<PagedQueryResult<TodoListItem>>
       (`${this.todoListsUrl}/done?pageNumber=${pageNumber}&pageSize=${pageSize}&sortExpression=${sortExpression}&orderByDescending=${orderByDescending}`);
   }
 

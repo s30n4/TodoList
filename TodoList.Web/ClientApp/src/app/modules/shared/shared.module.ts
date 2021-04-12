@@ -7,6 +7,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
 import { LayoutHeaderComponent } from './layout-header/layout-header.component';
 import { LayoutMainComponent } from './layout-main/layout-main.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ShowingRecordNumberComponent } from './showing-record-number/showing-record-number.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { LayoutMainComponent } from './layout-main/layout-main.component';
     BrowserAnimationsModule,
     RouterModule,
     NgSelectModule,
+    NgxPaginationModule
   ],
   exports: [
     FormsModule,
@@ -22,13 +25,16 @@ import { LayoutMainComponent } from './layout-main/layout-main.component';
     NgSelectModule,
     LayoutFooterComponent,
     LayoutHeaderComponent,
-    LayoutMainComponent
+    LayoutMainComponent,
+    ShowingRecordNumberComponent,
+    NgxPaginationModule
   ],
   declarations: [
 
     LayoutFooterComponent,
     LayoutHeaderComponent,
-    LayoutMainComponent
+    LayoutMainComponent,
+    ShowingRecordNumberComponent
   ],
   providers: [
 

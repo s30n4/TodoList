@@ -11,7 +11,16 @@ export class TodoListPendingViewComponent implements OnInit {
   public isLoadingTodoListItems = false;
   constructor(private todoListsService: TodoListsService) { }
 
+
+
   public todoListItems: TodoListItem[] = [];
+
+  public pageSize: number = 5;
+  public pageNumber: number = 1;
+  public sortExpression: string = "Name";
+  public totalCount: number = 0;
+
+
 
   ngOnInit(): void {
     this.search();
@@ -20,9 +29,11 @@ export class TodoListPendingViewComponent implements OnInit {
 
   public search() {
     this.isLoadingTodoListItems = true;
-    this.todoListsService.getDoneTodoListItems(1, 10, "Name", false).subscribe(
-      tasks => {
-        this.todoListItems = tasks;
+    this.todoListsService.getPendingTodoListItems(this.pageNumber, this.pageSize, this.sortExpression, false).subscribe(
+      response => {
+        this.todoListItems = response.list;
+        this.totalCount = response.totalCount;
+        this.pageNumber = response.pageIndex;
         this.isLoadingTodoListItems = false;
       },
       () => {
@@ -31,4 +42,10 @@ export class TodoListPendingViewComponent implements OnInit {
       }
     )
   }
+
+  onPageChanged(page: number): void {
+    this.pageNumber = page;
+    this.search();
+  }
+
 }

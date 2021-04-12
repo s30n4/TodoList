@@ -46,7 +46,7 @@ namespace TodoList.Persistence
             dbContext.SaveChanges();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(type => type.Namespace.Contains("Infrastructure"))
+                .Where(type => type.Namespace.Contains("Persistence"))
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
         }

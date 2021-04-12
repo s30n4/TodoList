@@ -8,7 +8,7 @@ import { TodoListsService } from '../../../../shared/todo-lists.service';
   styleUrls: ['./todo-list-done-view.component.scss']
 })
 export class TodoListDoneViewComponent implements OnInit {
-  public isLoadingTodoListItems = false;
+  public isLoading = false;
   constructor(private todoListsService: TodoListsService) { }
 
   public todoListItems: TodoListItem[] = [];
@@ -23,18 +23,18 @@ export class TodoListDoneViewComponent implements OnInit {
 
 
   public search() {
-    this.isLoadingTodoListItems = true;
+    this.isLoading = true;
     this.todoListsService.getDoneTodoListItems(this.pageNumber, this.pageSize)
       .subscribe(response => {
         this.todoListItems = response.list;
         this.totalCount = response.totalCount;
         this.pageNumber = response.pageIndex;
 
-        this.isLoadingTodoListItems = false;
+        this.isLoading = false;
       },
         () => {
 
-          this.isLoadingTodoListItems = false;
+          this.isLoading = false;
         }
       )
   }

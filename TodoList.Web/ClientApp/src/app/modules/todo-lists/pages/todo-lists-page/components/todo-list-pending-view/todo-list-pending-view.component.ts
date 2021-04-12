@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from '../../../../../../core/services/notification.service';
 import { TodoListItem } from '../../../../shared/models/todo-list-item.model';
 import { TodoListsService } from '../../../../shared/todo-lists.service';
 
@@ -8,11 +9,11 @@ import { TodoListsService } from '../../../../shared/todo-lists.service';
   styleUrls: ['./todo-list-pending-view.component.scss']
 })
 export class TodoListPendingViewComponent implements OnInit {
-  public isLoadingTodoListItems = false;
-  constructor(private todoListsService: TodoListsService) { }
+
+  constructor(private todoListsService: TodoListsService, private notification: NotificationService) { }
 
   public todoListItems: TodoListItem[] = [];
-
+  public isLoading = false;
   public pageSize: number = 5;
   public pageNumber: number = 1;
   public totalCount: number = 0;
@@ -23,19 +24,20 @@ export class TodoListPendingViewComponent implements OnInit {
 
 
   public search() {
-    this.isLoadingTodoListItems = true;
-    this.todoListsService.getPendingTodoListItems(this.pageNumber, this.pageSize).subscribe(
-      response => {
+    this.isLoading = true;
+    this.todoListsService
+      .getPendingTodoListItems(this.pageNumber, this.pageSize)
+      .subscribe(response => {
         this.todoListItems = response.list;
         this.totalCount = response.totalCount;
         this.pageNumber = response.pageIndex;
-        this.isLoadingTodoListItems = false;
+        this.isLoading = false;
       },
-      () => {
-
-        this.isLoadingTodoListItems = false;
-      }
-    )
+        () => {
+          this.notification.showError("Something went wrong while loading the todo list");
+          this.isLoading = false;
+        }
+      )
   }
 
   onPageChanged(page: number): void {

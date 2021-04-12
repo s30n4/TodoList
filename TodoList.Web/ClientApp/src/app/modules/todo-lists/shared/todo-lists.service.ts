@@ -16,14 +16,14 @@ export class TodoListsService {
   ) { }
 
 
-  public getPendingTodoListItems(pageNumber: number, pageSize: number, sortExpression: string, orderByDescending: boolean) {
+  public getPendingTodoListItems(pageNumber: number, pageSize: number) {
     return this.http.get<PagedQueryResult<TodoListItem>>
-      (`${this.todoListsUrl}/pending?pageNumber=${pageNumber}&pageSize=${pageSize}&sortExpression=${sortExpression}&orderByDescending=${orderByDescending}`);
+      (`${this.todoListsUrl}/pending?pageNumber=${pageNumber}&pageSize=${pageSize}`);
   }
 
-  public getDoneTodoListItems(pageNumber: number, pageSize: number, sortExpression: string, orderByDescending: boolean) {
+  public getDoneTodoListItems(pageNumber: number, pageSize: number) {
     return this.http.get<PagedQueryResult<TodoListItem>>
-      (`${this.todoListsUrl}/done?pageNumber=${pageNumber}&pageSize=${pageSize}&sortExpression=${sortExpression}&orderByDescending=${orderByDescending}`);
+      (`${this.todoListsUrl}/done?pageNumber=${pageNumber}&pageSize=${pageSize}`);
   }
 
 }

@@ -25,12 +25,14 @@ namespace TodoList.Application.TodoLists.Queries
         {
 
             var query = _todoListItemsRepository.GetAllTodoListItems()
-                .Where(tli => tli.Status ==(TodoListItemStatuses) request.Status);
+                .Where(tli => tli.Status == (TodoListItemStatuses)request.Status);
 
             var count = await query.CountAsync(cancellationToken: cancellationToken);
 
+
             var results = await _mapper
-                .ProjectTo<TodoListItemDto>(query.OrderBy(request.SortExpression, request.OrderByDescending))
+                .ProjectTo<TodoListItemDto>(query
+                .OrderBy(tli => tli.DueDate).ThenBy(tli => tli.Name))
                 .SkipToPage(request.PageNumber, request.PageSize)
                 .ToListAsync(cancellationToken: cancellationToken);
 

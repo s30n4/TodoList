@@ -5,6 +5,8 @@ import { TodoListsModuleRoutingModule } from './todo-lists-routing.module';
 import { TodoListsPageComponent } from './pages/todo-lists-page/todo-lists-page.component';
 import { TodoListPendingViewComponent } from './pages/todo-lists-page/components/todo-list-pending-view/todo-list-pending-view.component';
 import { TodoListDoneViewComponent } from './pages/todo-lists-page/components/todo-list-done-view/todo-list-done-view.component';
+import { TodoListAddPageComponent } from './pages/todo-list-add-page/todo-list-add-page.component';
+import { TodoListViewPageComponent } from './pages/todo-list-view-page/todo-list-view-page.component';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { TodoListDoneViewComponent } from './pages/todo-lists-page/components/to
   
     TodoListsPageComponent,
          TodoListPendingViewComponent,
-         TodoListDoneViewComponent
+         TodoListDoneViewComponent,
+         TodoListAddPageComponent,
+         TodoListViewPageComponent
   ],
   imports: [
     SharedModule,

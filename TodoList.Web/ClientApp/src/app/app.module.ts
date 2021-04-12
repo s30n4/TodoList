@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { TodoListsModule } from './modules/todo-lists/todo-lists.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/todo-lists', pathMatch: 'full' }
+  { path: '', redirectTo: '/todo-list', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
     CoreModule,
     TodoListsModule,
     RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' }),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

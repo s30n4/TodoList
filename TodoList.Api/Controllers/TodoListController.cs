@@ -21,6 +21,7 @@ namespace TodoList.Api.Controllers
         [HttpGet("pending")]
         public async Task<ActionResult> GetPendingTodoListItems([FromQuery] GetTodoListItemsQuery request)
         {
+            request.Status = 1;
             var result = await _mediator.Send(request);
 
             return Ok(result);
@@ -29,6 +30,7 @@ namespace TodoList.Api.Controllers
         [HttpGet("done")]
         public async Task<ActionResult> GetDoneTodoListItems([FromQuery] GetTodoListItemsQuery request)
         {
+            request.Status = 2;
             var result = await _mediator.Send(request);
 
             return Ok(result);

@@ -4,17 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
-import { LayoutHeaderComponent } from './layout-header/layout-header.component';
-import { LayoutMainComponent } from './layout-main/layout-main.component';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { ShowingRecordNumberComponent } from './showing-record-number/showing-record-number.component';
-import { SpinnerComponent } from './spinner/spinner.component';
+import { LayoutFooterComponent } from './components/layout-footer/layout-footer.component';
+import { LayoutHeaderComponent } from './components/layout-header/layout-header.component';
+import { LayoutMainComponent } from './components/layout-main/layout-main.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ToastrModule } from 'ngx-toastr';
-import { InputDateComponent } from './input-date/input-date.component';
+import { InputDateComponent } from './components/input-date/input-date.component';
 import { NgbDateParserFormatter, NgbModule, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateISO8601Adapter } from './helpers/ngb-date-iso8601-adapter';
 import { MomentDateFormatter } from './helpers/moment-date-formatter';
+import { LayoutNavBreadcrumbsComponent } from './components/layout-nav-breadcrumbs/layout-nav-breadcrumbs.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { ToolTipsComponent } from './components/tool-tips/tool-tips.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,6 @@ import { MomentDateFormatter } from './helpers/moment-date-formatter';
     BrowserAnimationsModule,
     RouterModule,
     NgSelectModule,
-    NgxPaginationModule,
     NgbModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-center'
@@ -36,21 +36,24 @@ import { MomentDateFormatter } from './helpers/moment-date-formatter';
     LayoutFooterComponent,
     LayoutHeaderComponent,
     LayoutMainComponent,
-    ShowingRecordNumberComponent,
-    NgxPaginationModule,
     SpinnerComponent,
     ToastrModule,
     NgbModule,
-    InputDateComponent
+    InputDateComponent,
+    LayoutNavBreadcrumbsComponent,
+    PaginationComponent,
+    ToolTipsComponent
   ],
   declarations: [
 
     LayoutFooterComponent,
     LayoutHeaderComponent,
     LayoutMainComponent,
-    ShowingRecordNumberComponent,
     SpinnerComponent,
-    InputDateComponent
+    InputDateComponent,
+    LayoutNavBreadcrumbsComponent,
+    PaginationComponent,
+    ToolTipsComponent
   ],
   providers: [
     { provide: NgbDateAdapter, useClass: NgbDateISO8601Adapter },

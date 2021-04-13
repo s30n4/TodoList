@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LayoutMainComponent } from '../shared/layout-main/layout-main.component';
+import { LayoutMainComponent } from '../shared/components/layout-main/layout-main.component';
 import { TodoListAddPageComponent } from './pages/todo-list-add-page/todo-list-add-page.component';
 import { TodoListViewPageComponent } from './pages/todo-list-view-page/todo-list-view-page.component';
 import { TodoListsPageComponent } from './pages/todo-lists-page/todo-lists-page.component';

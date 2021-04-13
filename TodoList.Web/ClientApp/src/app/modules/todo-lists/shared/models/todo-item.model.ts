@@ -3,4 +3,6 @@ export class TodoItem {
   public name: string;
   public description: string;
   public dueDate: string;
+  public statusName: string;
+  public completedOn: string;
 }

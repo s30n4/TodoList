@@ -9,6 +9,9 @@ namespace TodoList.Application.TodoLists.Configurations
         public TodoListsProfile()
         {
             CreateMap<TodoListItem, TodoListItemDto>();
+
+            CreateMap<TodoListItem, TodoItemDto>()
+               .ForMember(dto => dto.StatusName, conf => conf.MapFrom(src => src.Status == TodoListItemStatuses.Pending ? "Pending" : "Done"));
         }
     }
 }

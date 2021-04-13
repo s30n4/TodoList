@@ -7,7 +7,7 @@ using TodoList.Application.TodoLists.Dtos;
 
 namespace TodoList.Application.TodoLists.Queries
 {
-    public class GetTodoListItemQueryHandler : IRequestHandler<GetTodoListItemQuery, TodoListItemDto>
+    public class GetTodoListItemQueryHandler : IRequestHandler<GetTodoListItemQuery, TodoItemDto>
     {
         private readonly ITodoListItemsRepository _todoListItemsRepository;
         private readonly IMapper _mapper;
@@ -16,12 +16,12 @@ namespace TodoList.Application.TodoLists.Queries
             _todoListItemsRepository = todoListItemsRepository;
             _mapper = mapper;
         }
-        public async Task<TodoListItemDto> Handle(GetTodoListItemQuery request, CancellationToken cancellationToken)
+        public async Task<TodoItemDto> Handle(GetTodoListItemQuery request, CancellationToken cancellationToken)
         {
             var query =await _todoListItemsRepository.GetTodoListItemsByIdAsync(request.TodoListItemId, cancellationToken);
 
             var results = _mapper
-                .Map<TodoListItemDto>(query);
+                .Map<TodoItemDto>(query);
 
             return results;
 

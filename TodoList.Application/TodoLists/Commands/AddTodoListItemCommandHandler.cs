@@ -35,9 +35,9 @@ namespace TodoList.Application.TodoLists.Commands
                 request.Description,
                 request.DueDate);
 
-            _todoListItemsRepository.AddTodoListItem(todoListItem);
+            _todoListItemsRepository.Insert(todoListItem);
 
-            await _todoListItemsRepository.SaveChangesAsync();
+            await _todoListItemsRepository.SaveChangesAsync(cancellationToken);
 
             return CommandResult<Guid>.Success(todoListItem.TodoListItemId, "The todo list item was added successfully");
 

@@ -9,7 +9,7 @@ namespace TodoList.Application.TodoLists.Commands
         {
 
             RuleFor(model => model.TodoListItemId)
-             .MustAsync((todoListItemId, cancellation) => todoListItemsRepository.AnyTodoListItemsByIdAsync(todoListItemId, cancellation))
+             .MustAsync((todoListItemId, cancellation) => todoListItemsRepository.AnyAsync(x => x.TodoListItemId == todoListItemId, cancellation))
            .WithMessage("The todo list item associated with this transaction was not found.");
 
 

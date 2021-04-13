@@ -27,7 +27,7 @@ namespace TodoList.Application.TodoLists.Queries
                 .GetAllTodoListItemsByStatusAsync((TodoListItemStatuses)request.Status, request.PageNumber, request.PageSize, cancellationToken);
 
 
-            var count = await _todoListItemsRepository.CountAllTodoListItemsByStatusAsync((TodoListItemStatuses)request.Status, cancellationToken: cancellationToken);
+            var count = await _todoListItemsRepository.CountAsync(tdl => tdl.Status == (TodoListItemStatuses)request.Status, cancellationToken: cancellationToken);
 
 
             var results = _mapper

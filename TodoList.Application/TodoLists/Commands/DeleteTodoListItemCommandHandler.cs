@@ -26,11 +26,12 @@ namespace TodoList.Application.TodoLists.Commands
             if (!validationResult.IsValid)
                 return CommandResult<Unit>.Failure(validationResult.Errors);
 
-            var todoListItem = await _todoListItemsRepository.GetTodoListItemsByIdAsync(request.TodoListItemId, cancellationToken);
+            var todoListItem = await _todoListItemsRepository
+            .GetTodoListItemsByIdAsync(request.TodoListItemId, cancellationToken);
 
-            todoListItem.MarkAsDone();
+            _todoListItemsRepository.Remove(todoListItem);
 
-            await _todoListItemsRepository.SaveChangesAsync();
+            await _todoListItemsRepository.SaveChangesAsync(cancellationToken);
 
             return CommandResult<Unit>.Success(Unit.Value, "The todo list item was deleted successfully");
 

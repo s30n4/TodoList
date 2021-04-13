@@ -32,7 +32,7 @@ namespace TodoList.Application.TodoLists.Commands
 
             todoListItem.MarkAsDone();
 
-            await _todoListItemsRepository.SaveChangesAsync();
+            await _todoListItemsRepository.SaveChangesAsync(cancellationToken);
 
             return CommandResult<Unit>.Success(Unit.Value, "The todo list item was done successfully");
 

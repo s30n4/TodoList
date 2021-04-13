@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using TodoList.Domain.Common.Interfaces;
 using TodoList.Domain.TodoListManagement.Entities;
 
@@ -6,8 +9,11 @@ namespace TodoList.Domain.TodoListManagement.Interfaces
 {
     public interface ITodoListItemsRepository : IRepository<TodoListItem>
     {
-        void AddTodoListItem(TodoListItem todoListItem);
 
-        IQueryable<TodoListItem> GetAllTodoListItems();
+        Task<IEnumerable<TodoListItem>> GetAllTodoListItemsByStatusAsync(TodoListItemStatuses status, int pageNumber, int pageSize, CancellationToken cancellationToken);
+
+        Task<TodoListItem> GetTodoListItemsByIdAsync(Guid todoListItemId, CancellationToken cancellationToken);
+
+
     }
 }

@@ -1,0 +1,28 @@
+
+<div class="mt-1 flex rounded-md shadow-sm">
+  <div class="relative flex items-stretch flex-grow focus-within:z-10">
+
+    <input class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm border-gray-300"
+           [id]="id"
+           [required]="isRequired"
+           placeholder="{{placeholder}}"
+           name="datepicker"
+           [(ngModel)]="value"
+           (ngModelChange)="onDateChanged()"
+           [minDate]="min"
+           [maxDate]="max"
+           ngbDatepicker
+           #datepicker="ngbDatepicker"
+           container="body">
+
+
+  </div>
+  <button (click)="datepicker.toggle();" class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    </svg>
+
+  </button>
+</div>
+
+

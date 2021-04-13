@@ -12,6 +12,7 @@ namespace TodoList.Persistence.TodoListManagement.Configurations
                 .HasKey(a => a.TodoListItemId);
 
             builder.Property(b => b.Description).HasMaxLength(500);
+            builder.Property(p => p.DueDate).HasColumnType("date");
 
         }
     }

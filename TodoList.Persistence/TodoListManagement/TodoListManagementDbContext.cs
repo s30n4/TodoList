@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TodoList.Domain.TodoListManagement.Entities;
 using TodoList.Persistence.Abstracts;
+using TodoList.Persistence.Extensions;
 using TodoList.Persistence.TodoListManagement.Configurations;
 
 namespace TodoList.Persistence.TodoListManagement
@@ -21,11 +22,11 @@ namespace TodoList.Persistence.TodoListManagement
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new TodoListItemConfiguration());
-
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.ApplyConfiguration(new TodoListItemConfiguration());
 
+            modelBuilder.ConvertDatesToUtcKind();
         }
     }
 }

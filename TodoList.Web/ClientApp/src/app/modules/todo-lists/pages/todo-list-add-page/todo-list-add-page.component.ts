@@ -18,7 +18,7 @@ export class TodoListAddPageComponent {
     , private router: Router
     , private notification: NotificationService) { }
 
-  public saveTodoListITem() {
+  public saveTodoListItem() {
     this.isLoading = true;
     this.todoListsService.addTodoListItem(this.model)
       .subscribe((response) => {

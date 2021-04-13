@@ -9,6 +9,7 @@ using TodoList.Application.TodoLists.Dtos;
 using TodoList.Application.TodoLists.Queries;
 using TodoList.Domain.TodoListManagement.Entities;
 using TodoList.Domain.TodoListManagement.Interfaces;
+using TodoList.Tests.Unit.TestData;
 
 namespace TodoList.Tests.Unit.Application.TodoLists.Queries
 {
@@ -27,7 +28,7 @@ namespace TodoList.Tests.Unit.Application.TodoLists.Queries
         {
             //Arrange
 
-            var todoListItem = new TodoListItem("Test TodoListItem 1", "Test Description TodoListItem 1", DateTime.Now);
+            var todoListItem = TodoListItemTestData.CreateTodoListItemTestData();
 
             var todoListItemId = todoListItem.TodoListItemId;
             _todoListItemsRepository.GetTodoListItemsByIdAsync(todoListItemId).Returns(todoListItem);

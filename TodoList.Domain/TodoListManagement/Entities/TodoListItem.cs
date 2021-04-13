@@ -1,5 +1,6 @@
 ﻿using System;
 using TodoList.Domain.Abstracts;
+using TodoList.Domain.TodoListManagement.Rules;
 
 namespace TodoList.Domain.TodoListManagement.Entities
 {
@@ -17,21 +18,36 @@ namespace TodoList.Domain.TodoListManagement.Entities
 
         public DateTime? CompletedOn { get; private set; }
 
-        public TodoListItem()
+        private TodoListItem()
         {
 
         }
 
-        public TodoListItem(string name, string description, DateTime? dueDate)
+        private TodoListItem(string name, string description, DateTime? dueDate)
         {
+            this.CheckRule(new NameCanNotBeNullOrEmptyRule(name));
+
+            this.CheckRule(new DescriptionLengthCanNotBeMoreThan500CharacterRule(description));
+
+            TodoListItemId = Guid.NewGuid();
             Name = name;
             Description = description;
             DueDate = dueDate;
             Status = TodoListItemStatuses.Pending;
         }
 
-        public void Update(string name, string description, DateTime? dueDate)
+        public static TodoListItem CreateNew(string name, string description, DateTime? dueDate = null)
         {
+            return new TodoListItem(name, description, dueDate);
+        }
+
+
+        public void Update(string name, string description, DateTime? dueDate = null)
+        {
+            this.CheckRule(new NameCanNotBeNullOrEmptyRule(name));
+
+            this.CheckRule(new DescriptionLengthCanNotBeMoreThan500CharacterRule(description));
+
             Name = name;
             Description = description;
             DueDate = dueDate;

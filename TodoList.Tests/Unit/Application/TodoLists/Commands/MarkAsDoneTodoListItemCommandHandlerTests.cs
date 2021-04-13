@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using TodoList.Application.TodoLists.Commands;
 using TodoList.Domain.TodoListManagement.Entities;
 using TodoList.Domain.TodoListManagement.Interfaces;
+using TodoList.Tests.Unit.TestData;
 
 namespace TodoList.Tests.Unit.Application.TodoLists.Commands
 {
@@ -30,7 +31,7 @@ namespace TodoList.Tests.Unit.Application.TodoLists.Commands
 
             _validator.ValidateAsync(Arg.Any<MarkAsDoneTodoListItemCommand>()).Returns(successfulValidationResult);
 
-            var todoListItem = new TodoListItem("Test TodoListItem 1", "Test Description TodoListItem 1", DateTime.Now);
+            var todoListItem = TodoListItemTestData.CreateTodoListItemTestData();
 
             var todoListItemId = todoListItem.TodoListItemId;
 

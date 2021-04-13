@@ -2,7 +2,6 @@
 using NSubstitute;
 using NUnit.Framework;
 using Shouldly;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TodoList.Application.Common.Concretes;
@@ -12,6 +11,7 @@ using TodoList.Application.TodoLists.Dtos;
 using TodoList.Application.TodoLists.Queries;
 using TodoList.Domain.TodoListManagement.Entities;
 using TodoList.Domain.TodoListManagement.Interfaces;
+using TodoList.Tests.Unit.TestData;
 
 namespace TodoList.Tests.Unit.Application.TodoLists.Queries
 {
@@ -28,12 +28,7 @@ namespace TodoList.Tests.Unit.Application.TodoLists.Queries
         public async Task Handle_WhenRequestIsValid_ShouldReturnPendingTodoListItemDto()
         {
             //Arrange
-
-            var todoListItem1 = new TodoListItem("Test TodoListItem 1", "Test Description TodoListItem 1", DateTime.Now);
-            var todoListItem2 = new TodoListItem("Test TodoListItem 2", "Test Description TodoListItem 2", DateTime.Now);
-            var todoListItem3 = new TodoListItem("Test TodoListItem 3", "Test Description TodoListItem 3", DateTime.Now);
-
-            var data = new List<TodoListItem> { todoListItem1, todoListItem2, todoListItem3 };
+            var data = TodoListItemTestData.CreateListTodoListItemTestData();
 
             request = new GetTodoListItemsQuery
             {
@@ -60,37 +55,21 @@ namespace TodoList.Tests.Unit.Application.TodoLists.Queries
 
             //Assert
 
-            var queryResult1 = new TodoListItemDto
+            var todoListItems = new List<TodoListItemDto>();
+
+            foreach (var item in data)
             {
-                TodoListItemId = todoListItem1.TodoListItemId,
-                Name = todoListItem1.Name,
-                Description = todoListItem1.Description,
-                DueDate = todoListItem1.DueDate,
-                CompletedOn = todoListItem1.CompletedOn,
-            };
+                todoListItems.Add(new TodoListItemDto
+                {
+                    TodoListItemId = item.TodoListItemId,
+                    Name = item.Name,
+                    Description = item.Description,
+                    DueDate = item.DueDate,
+                    CompletedOn = item.CompletedOn,
+                });
+            }
 
-            var queryResult2 = new TodoListItemDto
-            {
-                TodoListItemId = todoListItem2.TodoListItemId,
-                Name = todoListItem2.Name,
-                Description = todoListItem2.Description,
-                DueDate = todoListItem2.DueDate,
-                CompletedOn = todoListItem2.CompletedOn,
-            };
-
-            var queryResult3 = new TodoListItemDto
-            {
-                TodoListItemId = todoListItem3.TodoListItemId,
-                Name = todoListItem3.Name,
-                Description = todoListItem3.Description,
-                DueDate = todoListItem3.DueDate,
-                CompletedOn = todoListItem3.CompletedOn,
-            };
-
-
-            var todoListItems = new List<TodoListItemDto> { queryResult1, queryResult2, queryResult3 };
-
-           var results= todoListItems.ToPagedList(request.PageNumber, request.PageSize, 0);
+            var results = todoListItems.ToPagedList(request.PageNumber, request.PageSize, 0);
 
 
             result.ShouldBeOfType<PagedList<TodoListItemDto>>();

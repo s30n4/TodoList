@@ -25,24 +25,24 @@ namespace TodoList.Persistence
 
             var dbContext = new TodoListManagementDbContext(optionsBuilder.Options);
 
-            dbContext.TodoListItems.Add(new TodoListItem("Test 1", "Description 1", DateTime.Now));
-            dbContext.TodoListItems.Add(new TodoListItem("Test 2", "Description 2", DateTime.Now));
-            dbContext.TodoListItems.Add(new TodoListItem("Test 3", "Description 3", DateTime.Now));
+            dbContext.TodoListItems.Add(TodoListItem.CreateNew("Test 1", "Description 1", DateTime.Now));
+            dbContext.TodoListItems.Add(TodoListItem.CreateNew("Test 2", "Description 2", DateTime.Now));
+            dbContext.TodoListItems.Add(TodoListItem.CreateNew("Test 3", "Description 3", DateTime.Now));
 
-            var todoListItem4 = new TodoListItem("Test 4", "Description 4", DateTime.Now);
+            var todoListItem4 = TodoListItem.CreateNew("Test 4", "Description 4", DateTime.Now);
             todoListItem4.MarkAsDone();
 
             dbContext.TodoListItems.Add(todoListItem4);
-            dbContext.TodoListItems.Add(new TodoListItem("Test 5", "Description 5", DateTime.Now));
+            dbContext.TodoListItems.Add(TodoListItem.CreateNew("Test 5", "Description 5", DateTime.Now));
 
-            var todoListItem6 = new TodoListItem("Test 6", "Description 6", DateTime.Now);
+            var todoListItem6 = TodoListItem.CreateNew("Test 6", "Description 6", DateTime.Now);
             todoListItem6.MarkAsDone();
             dbContext.TodoListItems.Add(todoListItem6);
 
-            dbContext.TodoListItems.Add(new TodoListItem("Test 7", "Description 7", DateTime.Now));
-            dbContext.TodoListItems.Add(new TodoListItem("Test 8", "Description 8", DateTime.Now));
-            dbContext.TodoListItems.Add(new TodoListItem("Test 9", "Description 9", DateTime.Now));
-            dbContext.TodoListItems.Add(new TodoListItem("Test 10", "Description 10", DateTime.Now));
+            dbContext.TodoListItems.Add(TodoListItem.CreateNew("Test 7", "Description 7", DateTime.Now));
+            dbContext.TodoListItems.Add(TodoListItem.CreateNew("Test 8", "Description 8", DateTime.Now));
+            dbContext.TodoListItems.Add(TodoListItem.CreateNew("Test 9", "Description 9", DateTime.Now));
+            dbContext.TodoListItems.Add(TodoListItem.CreateNew("Test 10", "Description 10", DateTime.Now));
             dbContext.SaveChanges();
 
             builder.RegisterAssemblyTypes(ThisAssembly)

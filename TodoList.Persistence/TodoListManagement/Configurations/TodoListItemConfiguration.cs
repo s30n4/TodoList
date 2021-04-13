@@ -9,10 +9,16 @@ namespace TodoList.Persistence.TodoListManagement.Configurations
         public void Configure(EntityTypeBuilder<TodoListItem> builder)
         {
             builder.ToTable("TodoListItems")
-                .HasKey(a => a.TodoListItemId);
+                .HasKey(tdl => tdl.TodoListItemId);
 
-            builder.Property(b => b.Description).HasMaxLength(500);
-            builder.Property(p => p.DueDate).HasColumnType("date");
+
+            builder
+               .Property(tdl => tdl.TodoListItemId)
+               .ValueGeneratedNever();
+
+            builder.Property(tdl => tdl.Name).IsRequired();
+            builder.Property(tdl => tdl.Description).HasMaxLength(500);
+            builder.Property(tdl => tdl.DueDate).HasColumnType("date");
 
         }
     }

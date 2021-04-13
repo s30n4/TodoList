@@ -28,7 +28,7 @@ namespace TodoList.Application.TodoLists.Commands
             if (!validationResult.IsValid)
                 return CommandResult<Guid>.Failure(validationResult.Errors);
 
-            var todoListItem = new TodoListItem(request.Name,
+            var todoListItem = TodoListItem.CreateNew(request.Name,
                 request.Description,
                 request.DueDate);
 

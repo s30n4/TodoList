@@ -24,7 +24,6 @@ namespace TodoList.Domain.TodoListManagement.Entities
 
         public TodoListItem(string name, string description, DateTime? dueDate)
         {
-            TodoListItemId = Guid.NewGuid();
             Name = name;
             Description = description;
             DueDate = dueDate;

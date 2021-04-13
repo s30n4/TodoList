@@ -11,9 +11,8 @@ namespace TodoList.Persistence.TodoListManagement.Configurations
             builder.ToTable("TodoListItems")
                 .HasKey(a => a.TodoListItemId);
 
-            builder.Property(a => a.TodoListItemId).ValueGeneratedNever();
+            builder.Property(b => b.Description).HasMaxLength(500);
 
-            //builder.HasQueryFilter(a => !a.DateDeleted.HasValue);
         }
     }
 }

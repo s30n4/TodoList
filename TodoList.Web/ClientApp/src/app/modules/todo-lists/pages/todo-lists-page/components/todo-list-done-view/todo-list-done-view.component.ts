@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from '../../../../../../core/services/notification.service';
 import { TodoListItem } from '../../../../shared/models/todo-list-item.model';
 import { TodoListsService } from '../../../../shared/todo-lists.service';
 
@@ -9,7 +10,7 @@ import { TodoListsService } from '../../../../shared/todo-lists.service';
 })
 export class TodoListDoneViewComponent implements OnInit {
   public isLoading = false;
-  constructor(private todoListsService: TodoListsService) { }
+  constructor(private todoListsService: TodoListsService, private notification: NotificationService) { }
 
   public todoListItems: TodoListItem[] = [];
   public pageSize: number = 5;
@@ -44,4 +45,36 @@ export class TodoListDoneViewComponent implements OnInit {
     this.search();
   }
 
+
+
+
+  deleteTodoListItem(todoListItemId: string) {
+    if (!confirm('Are you sure that you want to delete this todo item?'))
+      return false;
+    this.isLoading = true;
+    this.todoListsService.removeTodoListItem(todoListItemId)
+      .subscribe((response) => {
+        if (response.isSuccessful) {
+          this.notification.showSuccess(response.message);
+          this.refresh();
+        }
+        else {
+          this.notification.showErrors(response.errors, response.message);
+
+        }
+
+        this.isLoading = false;
+      },
+        () => {
+          this.notification.showError('Something went wrong while deleting the todo list item');
+          this.isLoading = false;
+        }
+      );
+  }
+
+
+  refresh() {
+    this.pageNumber = 1;
+    this.search();
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NotificationService } from '../../../../../../core/services/notification.service';
 import { TodoListItem } from '../../../../shared/models/todo-list-item.model';
 import { TodoListsService } from '../../../../shared/todo-lists.service';
@@ -17,6 +17,8 @@ export class TodoListPendingViewComponent implements OnInit {
   public pageSize: number = 5;
   public pageNumber: number = 1;
   public totalCount: number = 0;
+
+  @Output() public todoListItemMarkedAsDone: EventEmitter<any> = new EventEmitter();
 
   ngOnInit(): void {
     this.search();
@@ -42,6 +44,60 @@ export class TodoListPendingViewComponent implements OnInit {
 
   onPageChanged(page: number): void {
     this.pageNumber = page;
+    this.search();
+  }
+
+  public markAsDoneTodoListItem(todoListItemId: string) {
+    this.isLoading = true;
+    this.todoListsService.markAsDone(todoListItemId)
+      .subscribe((response) => {
+        if (response.isSuccessful) {
+          this.notification.showSuccess(response.message);
+          this.todoListItemMarkedAsDone.emit();
+          this.refresh();
+        }
+        else {
+          this.notification.showErrors(response.errors, response.message);
+
+        }
+
+        this.isLoading = false;
+      },
+        () => {
+          this.notification.showError('Something went wrong while mark as done the todo list item');
+          this.isLoading = false;
+        }
+      );
+  }
+
+  deleteTodoListItem(todoListItemId: string) {
+    if (!confirm('Are you sure that you want to delete this todo item?'))
+      return false;
+
+    this.isLoading = true;
+    this.todoListsService.removeTodoListItem(todoListItemId)
+      .subscribe((response) => {
+        if (response.isSuccessful) {
+          this.notification.showSuccess(response.message);
+          
+          this.refresh();
+        }
+        else {
+          this.notification.showErrors(response.errors, response.message);
+
+        }
+
+        this.isLoading = false;
+      },
+        () => {
+          this.notification.showError('Something went wrong while deleting the todo list item');
+          this.isLoading = false;
+        }
+      );
+  }
+
+  private refresh() {
+    this.pageNumber = 1;
     this.search();
   }
 

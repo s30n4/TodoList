@@ -1,20 +1,12 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
-<div class="mt-2 p-7 md:flex md:items-center md:justify-between">
-  <div class="flex-1 min-w-0">
-    <h4 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-      Pending Todos
-    </h4>
-  </div>
-</div>
 <div *ngIf="isLoading">
   <app-spinner></app-spinner>
 </div>
 
 
-<div class="bg-white shadow overflow-hidden sm:rounded-md" >
+<div class="bg-white shadow overflow-hidden sm:rounded-md">
 
   <ul class="divide-y divide-gray-200" *ngIf="!isLoading && todoListItems.length > 0">
-    <ng-container *ngFor="let todoListItem of todoListItems| paginate: {id:'todoListPagination', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalCount}">
+    <ng-container *ngFor="let todoListItem of todoListItems">
       <li>
         <div class="block hover:bg-gray-50">
           <div class="flex items-center px-4 py-4 sm:px-6">
@@ -30,22 +22,24 @@
                       <time datetime="2020-01-07">{{todoListItem.dueDate | date:'dd-MMM-yyyy'  }}</time>
                     </p>
                     <p class="mt-2 flex items-center text-sm text-gray-500">
-                      <!-- Heroicon name: solid/check-circle -->
-                      <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                      </svg>
                       {{todoListItem.description}}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div>
+            <div class="flex flex-row-reverse">
               <!-- Heroicon name: solid/chevron-right -->
+              <!--<app-tool-tips [text]="'Test'"></app-tool-tips>-->
               <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" [routerLink]="['edit', todoListItem.todoListItemId]">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
               </svg>
-
+              <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" (click)="deleteTodoListItem(todoListItem.todoListItemId)">
+                <path fill-rule="evenodd" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" clip-rule="evenodd" />
+              </svg>
+              <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" (click)="markAsDoneTodoListItem(todoListItem.todoListItemId)">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
 
             </div>
           </div>
@@ -54,30 +48,14 @@
 
     </ng-container>
   </ul>
-  <div class="flex">
-    <div class="mr-auto">
-      <app-showing-record-number [pageNumber]="pageNumber"
-                                 [pageSize]="pageSize"
-                                 [totalCount]="totalCount">
-      </app-showing-record-number>
-    </div>
-    <div>
-      <pagination-controls class="pull-right"
-                           id="todoListPagination"
-                           (pageChange)="onPageChanged($event)"
-                           (pageBoundsCorrection)="onPageChanged($event)"
-                           maxSize="9"
-                           directionLinks="true"
-                           autoHide="true"
-                           responsive="true"
-                           previousLabel="Previous"
-                           nextLabel="Next"
-                           screenReaderPaginationLabel="Pagination"
-                           screenReaderPageLabel="page"
-                           screenReaderCurrentLabel="You're on page">
-      </pagination-controls>
-    </div>
 
-  </div>
+
+  <app-pagination [pageNumber]="pageNumber"
+                  (pageChanged)="onPageChanged($event)"
+                  [pageSize]="pageSize"
+                  [totalCount]="totalCount">
+  </app-pagination>
+
+
 </div>
 

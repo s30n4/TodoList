@@ -5,4 +5,6 @@ export class TodoItem {
   public dueDate: string;
   public statusName: string;
   public completedOn: string;
+
+
 }

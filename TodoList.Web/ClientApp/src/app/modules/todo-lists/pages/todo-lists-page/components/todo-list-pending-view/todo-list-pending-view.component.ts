@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NotificationService } from '../../../../../../core/services/notification.service';
+import { AbstractTodoListsService } from '../../../../shared/abstract-todo-lists.service';
 import { TodoListItem } from '../../../../shared/models/todo-list-item.model';
-import { TodoListsService } from '../../../../shared/todo-lists.service';
 
 @Component({
   selector: 'app-todo-list-pending-view',
@@ -10,7 +10,7 @@ import { TodoListsService } from '../../../../shared/todo-lists.service';
 })
 export class TodoListPendingViewComponent implements OnInit {
 
-  constructor(private todoListsService: TodoListsService, private notification: NotificationService) { }
+  constructor(public todoListsService: AbstractTodoListsService, private notification: NotificationService) { }
 
   public todoListItems: TodoListItem[] = [];
   public isLoading = false;
@@ -18,7 +18,7 @@ export class TodoListPendingViewComponent implements OnInit {
   public pageNumber: number = 1;
   public totalCount: number = 0;
 
-  @Output() public todoListItemMarkedAsDone: EventEmitter<any> = new EventEmitter();
+  @Output() readonly todoListItemMarkedAsDone = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.search();
@@ -53,7 +53,7 @@ export class TodoListPendingViewComponent implements OnInit {
       .subscribe((response) => {
         if (response.isSuccessful) {
           this.notification.showSuccess(response.message);
-          this.todoListItemMarkedAsDone.emit();
+          this.todoListItemMarkedAsDone.emit("test");
           this.refresh();
         }
         else {

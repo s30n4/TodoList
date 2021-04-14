@@ -5,11 +5,12 @@ import { TodoListItem } from './models/todo-list-item.model';
 import { PagedQueryResult } from '../../../core/models/paged-query-result.model';
 import { TodoItem } from './models/todo-item.model';
 import { CommandResult } from '../../../core/models/command-result.model';
+import { AbstractTodoListsService } from './abstract-todo-lists.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TodoListsService {
+export class TodoListsService implements AbstractTodoListsService {
   private todoListsUrl = this.appSettings.getTodoListsApiServiceUrl();
 
   constructor(private http: HttpClient,
@@ -36,7 +37,7 @@ export class TodoListsService {
   }
 
   public updateTodoListItem(model: TodoItem) {
-    return this.http.put<CommandResult<string>>(`${this.todoListsUrl}/${model.todoListItemId}`, model);
+    return this.http.put<CommandResult<any>>(`${this.todoListsUrl}/${model.todoListItemId}`, model);
   }
 
   public markAsDone(todoListItemId: string) {
@@ -44,7 +45,7 @@ export class TodoListsService {
   }
 
   public removeTodoListItem(todoListItemId: string) {
-    return this.http.delete<CommandResult<string>>(`${this.todoListsUrl}/${todoListItemId}`);
+    return this.http.delete<CommandResult<any>>(`${this.todoListsUrl}/${todoListItemId}`);
   }
 
 }

@@ -8,6 +8,18 @@
     <button type="button" [routerLink]="['new']" class="inline-flex items-center px-5 py-2 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       Add new item
     </button>
+
+    <div class="btn-group ml-1">
+      <button data-toggle="dropdown" class="btn btn-lg btn-secondary dropdown-toggle">
+        <i class="fa fa-cog"></i> Actions
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" >Export all to CSV</a></li>
+        <li><a class="dropdown-item" >Reassign Accounts</a></li>
+        <li><a class="dropdown-item" >Bulk Update</a></li>
+      </ul>
+    </div>
+
   </div>
 </div>
 <app-todo-list-pending-view (todoListItemMarkedAsDone)="onTodoListItemMarkedAsDone()"></app-todo-list-pending-view>

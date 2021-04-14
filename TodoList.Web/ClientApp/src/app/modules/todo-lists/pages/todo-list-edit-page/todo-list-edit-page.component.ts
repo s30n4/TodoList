@@ -5,11 +5,11 @@ import { TodoItem } from '../../shared/models/todo-item.model';
 import { TodoListsService } from '../../shared/todo-lists.service';
 
 @Component({
-  selector: 'app-todo-list-view-page',
-  templateUrl: './todo-list-view-page.component.html',
-  styleUrls: ['./todo-list-view-page.component.scss']
+  selector: 'app-todo-list-edit-page',
+  templateUrl: './todo-list-edit-page.component.html',
+  styleUrls: ['./todo-list-edit-page.component.scss']
 })
-export class TodoListViewPageComponent implements OnInit {
+export class TodoListEditPageComponent  implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -45,13 +45,13 @@ export class TodoListViewPageComponent implements OnInit {
   }
 
 
-  public markAsDoneTodoListItem() {
+  public updateTodoListItem() {
     this.isLoading = true;
-    this.todoListsService.markAsDone(this.todoListItemId)
+    this.todoListsService.updateTodoListItem(this.model)
       .subscribe((response) => {
         if (response.isSuccessful) {
           this.notification.showSuccess(response.message);
-          this.loadTodoListItem();
+          this.router.navigate(['todo-list']);
         }
         else {
           this.notification.showErrors(response.errors, response.message);
@@ -61,7 +61,7 @@ export class TodoListViewPageComponent implements OnInit {
         this.isLoading = false;
       },
         () => {
-          this.notification.showError('Something went wrong while mark as done the todo list item');
+          this.notification.showError('Something went wrong while updating the todo list item');
           this.isLoading = false;
         }
       );

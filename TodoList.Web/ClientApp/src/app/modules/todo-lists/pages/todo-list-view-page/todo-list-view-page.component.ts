@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../../../core/services/notification.service';
 import { TodoItem } from '../../shared/models/todo-item.model';
 import { TodoListsService } from '../../shared/todo-lists.service';
@@ -12,6 +12,7 @@ import { TodoListsService } from '../../shared/todo-lists.service';
 export class TodoListViewPageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private notification: NotificationService,
     private todoListsService: TodoListsService) { }
 
@@ -65,6 +66,30 @@ export class TodoListViewPageComponent implements OnInit {
         }
       );
   }
+
+  public updateTodoListItem() {
+    this.isLoading = true;
+    this.todoListsService.updateTodoListItem(this.model)
+      .subscribe((response) => {
+        if (response.isSuccessful) {
+          this.notification.showSuccess(response.message);
+          this.router.navigate(['todo-list']);
+        }
+        else {
+          this.notification.showErrors(response.errors, response.message);
+
+        }
+
+        this.isLoading = false;
+      },
+        () => {
+          this.notification.showError('Something went wrong while updating the todo list item');
+          this.isLoading = false;
+        }
+      );
+  }
+
+
 
 
 }

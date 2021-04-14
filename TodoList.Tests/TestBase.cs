@@ -2,7 +2,7 @@
 using TodoList.Domain.Common.Exceptions;
 using TodoList.Domain.Common.Interfaces;
 
-namespace TodoList.Domain.Abstracts
+namespace TodoList.Tests
 {
     public abstract class TestBase
     {

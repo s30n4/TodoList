@@ -38,9 +38,12 @@ namespace TodoList.Tests.Unit.Application.TodoLists.Queries
             };
 
             _todoListItemsRepository
-                .GetAllTodoListItemsByStatusAsync((TodoListItemStatuses)request.Status, request.PageNumber, request.PageSize).Returns(data);
+              .CountAsync(x => x.Status == (TodoListItemStatuses)request.Status).Returns(3);
+
             _todoListItemsRepository
-                .CountAsync(x => x.Status == (TodoListItemStatuses)request.Status).Returns(3);
+                .GetAllTodoListItemsByStatusAsync((TodoListItemStatuses)request.Status, request.PageNumber, request.PageSize).Returns(data);
+
+          
 
 
             var mappingConfig = new MapperConfiguration(mc =>

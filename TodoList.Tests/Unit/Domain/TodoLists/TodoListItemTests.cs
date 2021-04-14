@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using Shouldly;
 using System;
-using TodoList.Domain.Abstracts;
 using TodoList.Domain.TodoListManagement.Entities;
 using TodoList.Domain.TodoListManagement.Rules;
 using TodoList.Tests.Unit.TestData;

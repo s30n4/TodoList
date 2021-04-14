@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AbstractValueAccessor } from '@app/core/abstracts/abstract-value-accessor';
+import * as moment from 'moment';
 import { InputDateComponent } from './input-date.component';
 
 describe('InputDateComponent', () => {
@@ -8,7 +9,8 @@ describe('InputDateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InputDateComponent ]
+      declarations: [InputDateComponent],
+      imports: [  AbstractValueAccessor,  moment]
     })
     .compileComponents();
   });

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TodoListsService } from '../../../../shared/todo-lists.service';
 import { TodoListPendingViewComponent } from './todo-list-pending-view.component';
 
 describe('TodoListPendingViewComponent', () => {
@@ -8,9 +8,11 @@ describe('TodoListPendingViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoListPendingViewComponent ]
+      declarations: [TodoListPendingViewComponent],
+      imports: [TodoListsService]
+
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

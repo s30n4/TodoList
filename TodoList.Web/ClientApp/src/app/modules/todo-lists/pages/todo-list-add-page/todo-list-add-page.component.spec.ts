@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TodoListsService } from '../../shared/todo-lists.service';
 
 import { TodoListAddPageComponent } from './todo-list-add-page.component';
 
@@ -8,9 +9,11 @@ describe('TodoListAddPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoListAddPageComponent ]
+      declarations: [TodoListAddPageComponent],
+      imports: [ TodoListsService],
+
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

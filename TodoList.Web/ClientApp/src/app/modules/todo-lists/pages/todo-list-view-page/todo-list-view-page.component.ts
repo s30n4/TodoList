@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../../../../core/services/notification.service';
 import { TodoItem } from '../../shared/models/todo-item.model';
 import { TodoListsService } from '../../shared/todo-lists.service';
@@ -12,7 +12,6 @@ import { TodoListsService } from '../../shared/todo-lists.service';
 export class TodoListViewPageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-    private router: Router,
     private notification: NotificationService,
     private todoListsService: TodoListsService) { }
 

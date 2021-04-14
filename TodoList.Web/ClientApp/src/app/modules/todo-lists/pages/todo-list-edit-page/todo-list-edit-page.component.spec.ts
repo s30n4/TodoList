@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TodoListsService } from '../../shared/todo-lists.service';
 import { TodoListEditPageComponent } from './todo-list-edit-page.component';
 
 describe('TodoListEditPageComponent', () => {
@@ -8,7 +8,8 @@ describe('TodoListEditPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoListEditPageComponent ]
+      declarations: [TodoListEditPageComponent],
+      imports: [  TodoListsService]
     })
     .compileComponents();
   });

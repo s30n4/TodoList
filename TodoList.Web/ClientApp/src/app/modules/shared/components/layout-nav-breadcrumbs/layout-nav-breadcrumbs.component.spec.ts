@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LayoutNavBreadcrumbsComponent } from './layout-nav-breadcrumbs.component';
 
 describe('LayoutNavBreadcrumbsComponent', () => {
@@ -8,7 +7,7 @@ describe('LayoutNavBreadcrumbsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LayoutNavBreadcrumbsComponent ]
+      declarations: [LayoutNavBreadcrumbsComponent],
     })
     .compileComponents();
   });

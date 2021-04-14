@@ -16,6 +16,7 @@ import { MomentDateFormatter } from './helpers/moment-date-formatter';
 import { LayoutNavBreadcrumbsComponent } from './components/layout-nav-breadcrumbs/layout-nav-breadcrumbs.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ToolTipsComponent } from './components/tool-tips/tool-tips.component';
+import { TooltipDirective } from './directives/tooltip.directive';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { ToolTipsComponent } from './components/tool-tips/tool-tips.component';
     InputDateComponent,
     LayoutNavBreadcrumbsComponent,
     PaginationComponent,
-    ToolTipsComponent
+    ToolTipsComponent,
+    TooltipDirective
   ],
   declarations: [
 
@@ -53,7 +55,8 @@ import { ToolTipsComponent } from './components/tool-tips/tool-tips.component';
     InputDateComponent,
     LayoutNavBreadcrumbsComponent,
     PaginationComponent,
-    ToolTipsComponent
+    ToolTipsComponent,
+    TooltipDirective
   ],
   providers: [
     { provide: NgbDateAdapter, useClass: NgbDateISO8601Adapter },

@@ -14,7 +14,7 @@ const routes: Routes = [
       [
         { path: '', component: TodoListsPageComponent, data: { title: 'Todo List'} },
         { path: 'new', component: TodoListAddPageComponent, data: { title: 'New Todo List'} },
-        { path: 'edit/:todoListItemId', component: TodoListViewPageComponent, data: { title: 'View Todo List'} },
+        { path: 'view/:todoListItemId', component: TodoListViewPageComponent, data: { title: 'View Todo List'} },
       ]
   },
 ];

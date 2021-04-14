@@ -10,7 +10,7 @@ import { AbstractTodoListsService } from './abstract-todo-lists.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TodoListsService implements AbstractTodoListsService {
+export class TodoListsService  {
   private todoListsUrl = this.appSettings.getTodoListsApiServiceUrl();
 
   constructor(private http: HttpClient,

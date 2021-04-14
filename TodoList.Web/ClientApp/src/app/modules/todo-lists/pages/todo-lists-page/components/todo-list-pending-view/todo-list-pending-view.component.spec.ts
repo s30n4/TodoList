@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NotificationService } from '../../../../../../core/services/notification.service';
-import { AbstractTodoListsService } from '../../../../shared/abstract-todo-lists.service';
 import { MockTodoListsService } from '../../../../shared/mock-todo-lists.service';
 import { TodoListPendingViewComponent } from './todo-list-pending-view.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
+import { TodoListsService } from '../../../../shared/todo-lists.service';
+import { MockNotificationService } from '../../../../../../core/services/mock-notification.service';
 
 
 fdescribe('TodoListPendingViewComponent', () => {
   let component: TodoListPendingViewComponent;
   let fixture: ComponentFixture<TodoListPendingViewComponent>;
-  let service: AbstractTodoListsService;
+  let service: TodoListsService;
   let notificationService: NotificationService;
   let getPendingTodoListItems: jasmine.Spy;
   let markAsDone: jasmine.Spy;
@@ -27,8 +28,8 @@ fdescribe('TodoListPendingViewComponent', () => {
         FormsModule,
         HttpClientTestingModule],
       providers: [
-        { provides: AbstractTodoListsService, useClass: MockTodoListsService },
-
+        { provides: TodoListsService, useClass: MockTodoListsService },
+        { provides: NotificationService, useClass: MockNotificationService }
 
       ]
 
@@ -38,7 +39,7 @@ fdescribe('TodoListPendingViewComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TodoListPendingViewComponent);
-    service = TestBed.inject(AbstractTodoListsService);
+    service = TestBed.inject(TodoListsService);
     notificationService = TestBed.inject(NotificationService);
     component = fixture.componentInstance;
     fixture.detectChanges();

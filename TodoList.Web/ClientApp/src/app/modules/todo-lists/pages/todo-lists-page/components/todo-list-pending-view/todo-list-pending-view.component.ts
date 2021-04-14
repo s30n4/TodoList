@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NotificationService } from '../../../../../../core/services/notification.service';
-import { AbstractTodoListsService } from '../../../../shared/abstract-todo-lists.service';
 import { TodoListItem } from '../../../../shared/models/todo-list-item.model';
+import { TodoListsService } from '../../../../shared/todo-lists.service';
 
 @Component({
   selector: 'app-todo-list-pending-view',
@@ -10,7 +10,7 @@ import { TodoListItem } from '../../../../shared/models/todo-list-item.model';
 })
 export class TodoListPendingViewComponent implements OnInit {
 
-  constructor(public todoListsService: AbstractTodoListsService, private notification: NotificationService) { }
+  constructor(public todoListsService: TodoListsService, private notification: NotificationService) { }
 
   public todoListItems: TodoListItem[] = [];
   public isLoading = false;

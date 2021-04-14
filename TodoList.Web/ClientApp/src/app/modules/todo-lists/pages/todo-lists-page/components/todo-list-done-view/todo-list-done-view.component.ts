@@ -49,8 +49,8 @@ export class TodoListDoneViewComponent implements OnInit {
 
 
   deleteTodoListItem(todoListItemId: string) {
-    if (!confirm('Are you sure that you want to delete this todo item?'))
-      return false;
+
+
     this.isLoading = true;
     this.todoListsService.removeTodoListItem(todoListItemId)
       .subscribe((response) => {

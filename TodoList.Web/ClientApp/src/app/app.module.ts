@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { TodoListsModule } from './modules/todo-lists/todo-lists.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 const appRoutes: Routes = [
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
     AppRoutingModule,
     CoreModule,
     TodoListsModule,
+    SweetAlert2Module.forRoot(),
     RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' }),
     NgbModule,
   ],

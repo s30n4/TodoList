@@ -17,6 +17,7 @@ import { LayoutNavBreadcrumbsComponent } from './components/layout-nav-breadcrum
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ToolTipsComponent } from './components/tool-tips/tool-tips.component';
 import { TooltipDirective } from './directives/tooltip.directive';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { TooltipDirective } from './directives/tooltip.directive';
     RouterModule,
     NgSelectModule,
     NgbModule,
+    SweetAlert2Module,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-center'
     }),
@@ -44,7 +46,8 @@ import { TooltipDirective } from './directives/tooltip.directive';
     LayoutNavBreadcrumbsComponent,
     PaginationComponent,
     ToolTipsComponent,
-    TooltipDirective
+    TooltipDirective,
+    SweetAlert2Module
   ],
   declarations: [
 

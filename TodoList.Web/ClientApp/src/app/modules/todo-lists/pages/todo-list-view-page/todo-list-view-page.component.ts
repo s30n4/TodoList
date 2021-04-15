@@ -35,7 +35,7 @@ export class TodoListViewPageComponent implements OnInit {
     );
   }
 
-  private loadTodoListItem() {
+  public loadTodoListItem() {
     this.isLoading = true;
     this.todoListsService.getTodoListItem(this.todoListItemId)
       .subscribe(result => {

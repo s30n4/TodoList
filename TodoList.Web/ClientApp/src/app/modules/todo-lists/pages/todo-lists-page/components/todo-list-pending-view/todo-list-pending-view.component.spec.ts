@@ -15,21 +15,6 @@ describe('TodoListPendingViewComponent', () => {
   let service: TodoListsService;
   let notificationService: NotificationService;
 
-
-  const toastrService = {
-    options: { positionClass: 'toast-bottom-center', enableHtml: true },
-    success: (
-      message?: string,
-      title?: string,
-      override?: Partial<IndividualConfig>
-    ) => { },
-    error: (
-      message?: string,
-      title?: string,
-      override?: Partial<IndividualConfig>
-    ) => { },
-  };
-
   const mockNotificationService = {
     show: (title, message, type) => { },
 
@@ -39,7 +24,6 @@ describe('TodoListPendingViewComponent', () => {
 
     showSuccess: (message: string, title?: string) => { }
   };
-
 
 
   beforeEach(() => {
@@ -179,8 +163,6 @@ describe('TodoListPendingViewComponent', () => {
     expect(component.search).not.toHaveBeenCalled();
 
   });
-
-
 
   it('should create', () => {
     expect(component).toBeTruthy();

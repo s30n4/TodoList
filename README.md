@@ -1,31 +1,47 @@
 # To-do list application
+
+## Tools/Framework
+
+- .NET Core 5
+- Angular 11
+- Tailwindcss
+- Autofac
+- Fluentvalidation
+- Automapper
+- Jasmine/Karma
+
 ## Installation
 
-•	Clone repository to your machine
+-	Clone repository to your machine
 
-•	Ensure you have Visual Studio installed
+-	Ensure you have Visual Studio installed
 
-•	Community version is fine
+-	  Community version is fine
 
-•	Ensure you have nodejs 12+ installed
+-	Ensure you have nodejs 12+ installed
 
-•	Use `node -v` to check your version
+-	    Use `node -v` to check your version
 
-•	Ensure you have AngularCLI installed globally
+-	Ensure you have AngularCLI installed globally
 
-•	`npm install -g @angular/cli`
+-	    `npm install -g @angular/cli`
 
-•	In your terminal, navigate to {appDirectory}/TodoList.Web/ClientApp
+-	In your terminal, navigate to {appDirectory}/TodoList.Web/ClientApp
 
-•	Run `npm i` to install nodejs dependencies
+-	    Run `npm i` to install nodejs dependencies
 
-•	Run `npm start` to launch the Angular application
+-	    Run `npm start` to launch the Angular application
 
-•	Open TodoList.sln in Visual Studio
+-	Open TodoList.sln in Visual Studio
 
-•	Ensure TodoList.Api is selected as the startup project
+-	Ensure TodoList.Api is selected as the startup project
 
-•	Press `Ctrl + F5` to launch the WebApi application
+-	    Press `Ctrl + F5` to launch the WebApi application
 
-•	The app should now be running on 'localhost:52436' and 'https:localhost:44392'
+-	The app should now be running on 'localhost:52436' and 'https:localhost:44392'
+
+## Testing
+
+- Run front-end tests using `ng test`
+- Run back-end tests `dotnet test`
 

@@ -93,7 +93,7 @@ export class TodoListPendingViewComponent implements OnInit {
       );
   }
 
-  private refresh() {
+  public refresh() {
     this.pageNumber = 1;
     this.search();
   }

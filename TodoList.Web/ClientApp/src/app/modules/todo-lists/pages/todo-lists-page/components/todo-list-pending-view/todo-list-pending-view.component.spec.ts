@@ -9,7 +9,7 @@ import { TodoListItem } from '../../../../shared/models/todo-list-item.model';
 import { PagedQueryResult } from '../../../../../../core/models/paged-query-result.model';
 
 
-fdescribe('TodoListPendingViewComponent', () => {
+describe('TodoListPendingViewComponent', () => {
   let component: TodoListPendingViewComponent;
   let fixture: ComponentFixture<TodoListPendingViewComponent>;
   let service: TodoListsService;

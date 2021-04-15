@@ -10,7 +10,7 @@ describe('TodoListsPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TodoListsPageComponent],
-      imports: [TodoListDoneViewComponent]
+      providers: [TodoListDoneViewComponent]
     })
       .compileComponents();
   });

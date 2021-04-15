@@ -5,7 +5,6 @@ import { TodoListItem } from './models/todo-list-item.model';
 import { PagedQueryResult } from '../../../core/models/paged-query-result.model';
 import { TodoItem } from './models/todo-item.model';
 import { CommandResult } from '../../../core/models/command-result.model';
-import { AbstractTodoListsService } from './abstract-todo-lists.service';
 
 @Injectable({
   providedIn: 'root'

@@ -36,7 +36,7 @@ namespace TodoList.Application.TodoLists.Commands
 
             await _todoListItemsRepository.SaveChangesAsync(cancellationToken);
 
-            return CommandResult<Guid>.Success(todoListItem.TodoListItemId, "The todo list item was added successfully");
+            return CommandResult<Guid>.Success(todoListItem.TodoListItemId, "The to-do item was added successfully");
 
         }
     }

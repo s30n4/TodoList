@@ -11,7 +11,7 @@ import validator from 'validator';
   styleUrls: ['./layout-main.component.scss']
 })
 export class LayoutMainComponent implements OnInit {
-  public applicationName = "Todo list"
+  public applicationName = "To-do list"
   public pageTitle: string;
   public breadcrumbItems: BreadcrumbItem[] = [];
   constructor(private pageTitleService: PageTitleService,

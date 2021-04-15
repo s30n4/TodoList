@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using TodoList.Domain.TodoListManagement.Entities;
 using TodoList.Domain.TodoListManagement.Interfaces;
-using MediatR;
 using TodoList.Persistence.Abstracts;
 using System;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +13,7 @@ namespace TodoList.Persistence.TodoListManagement.Repositories
 {
     public class TodoListItemsRepository : RepositoryBase<TodoListItem>, ITodoListItemsRepository
     {
-        public TodoListItemsRepository(TodoListManagementDbContext dbContext, IMediator mediator) : base(dbContext, mediator)
+        public TodoListItemsRepository(TodoListManagementDbContext dbContext) : base(dbContext)
         {
         }
         public async Task<IEnumerable<TodoListItem>> GetAllTodoListItemsByStatusAsync(TodoListItemStatuses status, int pageNumber, int pageSize, CancellationToken cancellationToken)

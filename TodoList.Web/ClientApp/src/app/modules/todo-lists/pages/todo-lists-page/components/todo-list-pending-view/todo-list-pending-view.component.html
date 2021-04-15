@@ -29,7 +29,7 @@
                 </div>
               </div>
               <div class="flex flex-row-reverse">
-                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" [title]="'View'" [routerLink]="['view', todoListItem.todoListItemId]">
+                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" [tooltip]="'View'" [routerLink]="['view', todoListItem.todoListItemId]">
                   <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                 </svg>
                 <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" [tooltip]="'Delete'" [swal]="deleteConfirm">
@@ -68,8 +68,15 @@
 
   </div>
   <ng-template #noPendingRecord>
-    <div class="bg-white shadow overflow-hidden sm:rounded-md">
-      No pending todo list item found
+    <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5 ">
+      <div>
+        <div>
+          <h6 class="text-lg leading-6 font-medium text-gray-900">
+            No pending to-do item found
+          </h6>
+
+        </div>
+      </div>
     </div>
   </ng-template>
 </ng-template>

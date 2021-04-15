@@ -34,7 +34,7 @@ namespace TodoList.Application.TodoLists.Commands
 
             await _todoListItemsRepository.SaveChangesAsync(cancellationToken);
 
-            return CommandResult<Unit>.Success(Unit.Value, "The todo list item was done successfully");
+            return CommandResult<Unit>.Success(Unit.Value, "The to-do item was done successfully");
 
         }
     }

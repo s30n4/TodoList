@@ -26,7 +26,6 @@ export class InputDateComponent extends AbstractValueAccessor {
   @Input() public max: NgbDateStruct = { day: this.currentDate.getUTCDate(), month: this.currentDate.getUTCMonth() + 1, year: this.currentDate.getUTCFullYear() + 30 };
   @Output() public dateValueChanged: EventEmitter<string> = new EventEmitter<string>();
 
-  public isValid = true;
 
   constructor() {
     super();
@@ -35,11 +34,11 @@ export class InputDateComponent extends AbstractValueAccessor {
   public onDateChanged() {
     if (!moment(this.value).isValid()) {
       this.value = null;
-      this.isValid = false;
+      
     }
     else {
       this.dateValueChanged.emit(this.value);
-      this.isValid = true;
+      
     }
   }
 }

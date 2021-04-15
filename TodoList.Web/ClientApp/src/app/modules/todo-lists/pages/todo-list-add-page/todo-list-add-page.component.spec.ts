@@ -48,6 +48,7 @@ fdescribe('TodoListAddPageComponent', () => {
     service = TestBed.get(TodoListsService);
 
     todoName = compiled.querySelector('#input_name');
+    console.log(todoName);
 
   });
 

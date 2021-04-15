@@ -73,10 +73,7 @@ export class TodoListViewPageComponent implements OnInit {
   }
 
   public updateTodoListItem() {
-    if (!this.inputDueDate.isValid) {
-      this.notification.showError('Due date is invalid');
-    }
-    else {
+   
       this.isLoading = true;
       this.todoListsService.updateTodoListItem(this.model)
         .subscribe((response) => {
@@ -96,7 +93,7 @@ export class TodoListViewPageComponent implements OnInit {
             this.isLoading = false;
           }
         );
-    }
+    
   }
 
 

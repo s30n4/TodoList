@@ -2,10 +2,10 @@
   <div>
     <div>
       <h3 class="text-lg leading-6 font-medium text-gray-900">
-        View Todo
+        View To-do 
       </h3>
       <p class="mt-1 max-w-2xl text-sm text-gray-500">
-        This information will be displayed publicly so be careful what you share.
+        View to-do item details
       </p>
     </div>
     <div *ngIf="isLoading">
@@ -27,7 +27,7 @@
         </label>
         <div class="mt-1 sm:mt-0 sm:col-span-2">
           <textarea id="about" name="description" rows="3" [(ngModel)]="model.description" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"></textarea>
-          <p class="mt-2 text-sm text-gray-500">Write a few sentences about task.</p>
+          <p class="mt-2 text-sm text-gray-500">Write a few sentences about the to-do item.</p>
         </div>
       </div>
       <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">

@@ -13,37 +13,16 @@ namespace TodoList.Persistence.Abstracts
     public abstract class RepositoryBase<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly DbContextBase _dbContext;
-        private readonly IMediator _mediator;
         internal DbSet<TEntity> dbSet;
-        public RepositoryBase(DbContextBase dbContext, IMediator mediator)
+        public RepositoryBase(DbContextBase dbContext)
         {
             _dbContext = dbContext;
-            _mediator = mediator;
             dbSet = _dbContext.Set<TEntity>();
 
         }
 
-        protected async Task PublishDomainEvents()
-        {
-            var domainEventEntities = _dbContext.ChangeTracker.Entries<Entity>()
-               .Select(po => po.Entity)
-               .Where(po => po.DomainEvents.Any())
-               .ToArray();
-
-            foreach (var entity in domainEventEntities)
-            {
-                var events = entity.DomainEvents.ToArray();
-                entity.DomainEvents.Clear();
-                foreach (var domainEvent in events)
-                {
-                    await _mediator.Publish(domainEvent);
-                }
-            }
-        }
-
         public virtual async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            await PublishDomainEvents();
             SetAuditProperties();
 
             return await _dbContext.SaveChangesAsync(cancellationToken);

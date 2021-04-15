@@ -19,6 +19,9 @@ export class TooltipDirective {
   @HostListener('mouseleave') onMouseLeave() {
     if (this.tooltip) { this.hide(); }
   }
+  @HostListener('mouseup') onMouseUp() {
+    if (this.tooltip) { this.hide(); }
+  }
 
   show() {
     this.create();

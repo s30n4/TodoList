@@ -6,6 +6,7 @@ using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TodoList.Application.TodoLists.Commands;
 using TodoList.Domain.TodoListManagement.Entities;
@@ -35,8 +36,8 @@ namespace TodoList.Tests.Unit.Application.TodoLists.Commands
 
             var todoListItemId = todoListItem.TodoListItemId;
 
-            _todoListItemsRepository.AnyAsync(x => x.TodoListItemId == todoListItemId).Returns(true);
-            _todoListItemsRepository.GetTodoListItemsByIdAsync(todoListItemId).Returns(todoListItem);
+            _todoListItemsRepository.AnyAsync(Arg.Any<Expression<Func<TodoListItem, bool>>>()).Returns(true);
+            _todoListItemsRepository.GetTodoListItemsByIdAsync(Arg.Any<Guid>()).Returns(todoListItem);
 
             request = new MarkAsDoneTodoListItemCommand
             {

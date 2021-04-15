@@ -10,11 +10,6 @@
       "type": "TodoList.Application.MediatorModule, TodoList.Application",
       "properties": {
       }
-    },
-    //{
-    //  "type": "TodoList.Infrastructure.InfrastructureModule, TodoList.Infrastructure",
-    //  "properties": {
-    //  }
-    //}
+    }
   ]
 }

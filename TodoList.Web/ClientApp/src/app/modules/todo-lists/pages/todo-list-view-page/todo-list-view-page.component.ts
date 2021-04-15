@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../../../core/services/notification.service';
 import { TodoItem } from '../../shared/models/todo-item.model';
 import { TodoListsService } from '../../shared/todo-lists.service';
+import validator from 'validator';
+import { InputDateComponent } from '../../../shared/components/input-date/input-date.component';
 
 @Component({
   selector: 'app-todo-list-view-page',
@@ -20,6 +22,9 @@ export class TodoListViewPageComponent implements OnInit {
   public isLoading = false;
   public model: TodoItem;
 
+  InputDateComponent
+
+  @ViewChild('inputDueDate') public inputDueDate: InputDateComponent;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
@@ -68,26 +73,33 @@ export class TodoListViewPageComponent implements OnInit {
   }
 
   public updateTodoListItem() {
-    this.isLoading = true;
-    this.todoListsService.updateTodoListItem(this.model)
-      .subscribe((response) => {
-        if (response.isSuccessful) {
-          this.notification.showSuccess(response.message);
-          this.router.navigate(['todo-list']);
-        }
-        else {
-          this.notification.showErrors(response.errors, response.message);
+    if (!this.inputDueDate.isValid) {
+      this.notification.showError('Due date is invalid');
+    }
+    else {
+      this.isLoading = true;
+      this.todoListsService.updateTodoListItem(this.model)
+        .subscribe((response) => {
+          if (response.isSuccessful) {
+            this.notification.showSuccess(response.message);
+            this.router.navigate(['todo-list']);
+          }
+          else {
+            this.notification.showErrors(response.errors, response.message);
 
-        }
+          }
 
-        this.isLoading = false;
-      },
-        () => {
-          this.notification.showError('Something went wrong while updating the todo list item');
           this.isLoading = false;
-        }
-      );
+        },
+          () => {
+            this.notification.showError('Something went wrong while updating the todo list item');
+            this.isLoading = false;
+          }
+        );
+    }
   }
+
+
 
 
 

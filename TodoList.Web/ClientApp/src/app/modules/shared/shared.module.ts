@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { LayoutFooterComponent } from './components/layout-footer/layout-footer.component';
-import { LayoutHeaderComponent } from './components/layout-header/layout-header.component';
 import { LayoutMainComponent } from './components/layout-main/layout-main.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -15,7 +13,6 @@ import { NgbDateISO8601Adapter } from './helpers/ngb-date-iso8601-adapter';
 import { MomentDateFormatter } from './helpers/moment-date-formatter';
 import { LayoutNavBreadcrumbsComponent } from './components/layout-nav-breadcrumbs/layout-nav-breadcrumbs.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { ToolTipsComponent } from './components/tool-tips/tool-tips.component';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
@@ -29,15 +26,14 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     NgbModule,
     SweetAlert2Module,
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-center'
+      positionClass: 'toast-bottom-center',
+      enableHtml : true
     }),
   ],
   exports: [
     FormsModule,
     BrowserAnimationsModule,
     NgSelectModule,
-    LayoutFooterComponent,
-    LayoutHeaderComponent,
     LayoutMainComponent,
     SpinnerComponent,
     ToastrModule,
@@ -45,20 +41,16 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     InputDateComponent,
     LayoutNavBreadcrumbsComponent,
     PaginationComponent,
-    ToolTipsComponent,
     TooltipDirective,
     SweetAlert2Module
   ],
   declarations: [
 
-    LayoutFooterComponent,
-    LayoutHeaderComponent,
     LayoutMainComponent,
     SpinnerComponent,
     InputDateComponent,
     LayoutNavBreadcrumbsComponent,
     PaginationComponent,
-    ToolTipsComponent,
     TooltipDirective
   ],
   providers: [

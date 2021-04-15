@@ -31,7 +31,7 @@ namespace TodoList.Tests.Unit.Application.TodoLists.Queries
             var todoListItem = TodoListItemTestData.CreateTodoListItemTestData();
 
             var todoListItemId = todoListItem.TodoListItemId;
-            _todoListItemsRepository.GetTodoListItemsByIdAsync(todoListItemId).Returns(todoListItem);
+            _todoListItemsRepository.GetTodoListItemsByIdAsync(Arg.Any<Guid>()).Returns(todoListItem);
 
             request = new GetTodoListItemQuery
             {

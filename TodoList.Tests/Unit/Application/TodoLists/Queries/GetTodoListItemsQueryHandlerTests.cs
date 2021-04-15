@@ -2,7 +2,9 @@
 using NSubstitute;
 using NUnit.Framework;
 using Shouldly;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TodoList.Application.Common.Concretes;
 using TodoList.Application.Common.Extensions;
@@ -37,13 +39,12 @@ namespace TodoList.Tests.Unit.Application.TodoLists.Queries
                 Status = 1
             };
 
-            _todoListItemsRepository
-              .CountAsync(x => x.Status == (TodoListItemStatuses)request.Status).Returns(3);
+            _todoListItemsRepository.CountAsync(Arg.Any<Expression<Func<TodoListItem, bool>>>()).Returns(data.Count);
 
             _todoListItemsRepository
-                .GetAllTodoListItemsByStatusAsync((TodoListItemStatuses)request.Status, request.PageNumber, request.PageSize).Returns(data);
+                .GetAllTodoListItemsByStatusAsync(Arg.Any<TodoListItemStatuses>(), Arg.Any<int>(), Arg.Any<int>()).Returns(data);
 
-          
+
 
 
             var mappingConfig = new MapperConfiguration(mc =>
@@ -72,7 +73,7 @@ namespace TodoList.Tests.Unit.Application.TodoLists.Queries
                 });
             }
 
-            var results = todoListItems.ToPagedList(request.PageNumber, request.PageSize, 0);
+            var results = todoListItems.ToPagedList(request.PageNumber, request.PageSize, data.Count);
 
 
             result.ShouldBeOfType<PagedList<TodoListItemDto>>();

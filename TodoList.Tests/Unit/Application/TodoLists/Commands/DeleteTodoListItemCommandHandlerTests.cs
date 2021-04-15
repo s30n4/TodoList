@@ -6,8 +6,10 @@ using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TodoList.Application.TodoLists.Commands;
+using TodoList.Domain.TodoListManagement.Entities;
 using TodoList.Domain.TodoListManagement.Interfaces;
 
 namespace TodoList.Tests.Unit.Application.TodoLists.Commands
@@ -30,7 +32,7 @@ namespace TodoList.Tests.Unit.Application.TodoLists.Commands
             _validator.ValidateAsync(Arg.Any<DeleteTodoListItemCommand>()).Returns(successfulValidationResult);
             var todoListItemId = Guid.NewGuid();
 
-            _todoListItemsRepository.AnyAsync(x => x.TodoListItemId == todoListItemId).Returns(true);
+            _todoListItemsRepository.AnyAsync(Arg.Any<Expression<Func<TodoListItem, bool>>>()).Returns(true);
 
             request = new DeleteTodoListItemCommand
             {

@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Shouldly;
 using System;
+using TodoList.Domain.Common.Exceptions;
 using TodoList.Domain.TodoListManagement.Entities;
 using TodoList.Domain.TodoListManagement.Rules;
 using TodoList.Tests.Unit.TestData;
@@ -32,7 +33,7 @@ namespace TodoList.Tests.Unit.Domain.TodoLists
         }
 
         [Test]
-        public void NewTodoListItem_CompletedOn_ShouldBeNull()
+        public void CreateNew_CompletedOn_ShouldBeNull()
         {
             var todoListItem = TodoListItemTestData.CreateTodoListItemTestData();
 
@@ -42,7 +43,7 @@ namespace TodoList.Tests.Unit.Domain.TodoLists
         }
 
         [Test]
-        public void NewTodoListItem_NameCanNotBeNullOrEmptyRule_IsBroken()
+        public void CreateNew_WhenNameIsNull_IsBroken()
         {
             AssertBrokenRule<NameCanNotBeNullOrEmptyRule>(() =>
             {
@@ -52,7 +53,14 @@ namespace TodoList.Tests.Unit.Domain.TodoLists
         }
 
         [Test]
-        public void NewTodoListItem_DescriptionLengthCanNotBeMoreThan500CharacterRule_IsBroken()
+        public void CreateNew_WhenNameIsNull_ShouldThrowBusinessRuleValidationException()
+        {
+            var exception = Should.Throw<BusinessRuleValidationException>(() => TodoListItem.CreateNew(null, "test"));
+            exception.Message.ShouldBe("Name must be provided");
+        }
+
+        [Test]
+        public void CreateNew_WhenNameDescriptionLengthCanNotBeMoreThan500CharacterRule_IsBroken()
         {
             AssertBrokenRule<DescriptionLengthCanNotBeMoreThan500CharacterRule>(() =>
             {
@@ -61,11 +69,8 @@ namespace TodoList.Tests.Unit.Domain.TodoLists
             });
         }
 
-
-
-
         [Test]
-        public void NewTodoListItem_DueDate_ShouldBeNull()
+        public void CreateNew_DueDate_ShouldBeNull()
         {
             var todoListItem = TodoListItemTestData.CreateTodoListItemTestData(hasDueDate: false);
 
@@ -75,7 +80,7 @@ namespace TodoList.Tests.Unit.Domain.TodoLists
         }
 
         [Test]
-        public void NewTodoListItem_Description_ShouldBeNull()
+        public void CreateNew_Description_ShouldBeNull()
         {
             var todoListItem = TodoListItemTestData.CreateTodoListItemTestData(hasDescription: false);
 
@@ -86,7 +91,7 @@ namespace TodoList.Tests.Unit.Domain.TodoLists
 
 
         [Test]
-        public void UpdateTodoListItem_DueDate_ShouldBeNull()
+        public void Update_DueDate_ShouldBeNull()
         {
             var todoListItem = TodoListItemTestData.CreateTodoListItemTestData();
 
@@ -97,7 +102,7 @@ namespace TodoList.Tests.Unit.Domain.TodoLists
         }
 
         [Test]
-        public void UpdateTodoListItem_Description_ShouldBeNull()
+        public void Update_Description_ShouldBeNull()
         {
             //Act
             var todoListItem = TodoListItemTestData.CreateTodoListItemTestData();
@@ -110,7 +115,7 @@ namespace TodoList.Tests.Unit.Domain.TodoLists
         }
 
         [Test]
-        public void UpdateTodoListItem_NameCanNotBeNullOrEmptyRule_IsBroken()
+        public void Update_WhenNameCanNotBeNullOrEmptyRule_IsBroken()
         {
             var todoListItem = TodoListItemTestData.CreateTodoListItemTestData();
 
@@ -122,7 +127,7 @@ namespace TodoList.Tests.Unit.Domain.TodoLists
         }
 
         [Test]
-        public void UpdateTodoListItem_DescriptionLengthCanNotBeMoreThan500CharacterRule_IsBroken()
+        public void Update_WhenDescriptionLengthCanNotBeMoreThan500CharacterRule_IsBroken()
         {
 
             var todoListItem = TodoListItemTestData.CreateTodoListItemTestData();

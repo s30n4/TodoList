@@ -12,8 +12,7 @@ export class NotificationService {
     private toastr: ToastrService
   ) {
     this.options = this.toastr.toastrConfig;
-    this.options.positionClass = 'toast-bottom-center';
-    this.options.enableHtml = true;
+   
   }
 
   show(title, message, type) {

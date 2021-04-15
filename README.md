@@ -1,4 +1,5 @@
-To-do list application
+# To-do list application
+## Installation
 
 •	Clone repository to your machine
 

@@ -43,7 +43,7 @@ namespace TodoList.Tests.Unit.Application.TodoLists.Commands
             result.Errors.ShouldBeEmpty();
             result.IsSuccessful.ShouldBeTrue();
             result.Result.ShouldBeOfType<Guid>();
-            result.Message.ShouldBe("The todo list item was added successfully");
+            result.Message.ShouldBe("The to-do item was added successfully");
         }
 
         [Test]

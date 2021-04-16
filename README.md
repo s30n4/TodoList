@@ -18,6 +18,8 @@
 
 -	  Community version is fine
 
+-	Ensure you have the .Net 5 runtime and hosting bundle installed: https://dotnet.microsoft.com/download/dotnet/5.0'
+
 -	Ensure you have nodejs 12+ installed
 
 -	    Use `node -v` to check your version
@@ -42,6 +44,6 @@
 
 ## Testing
 
-- Run front-end tests using `ng test`
-- Run back-end tests `dotnet test`
+- To run backend tests, navigate to '{appDir}/TodoList.Tests' and execute the command 'dotnet test'
+- To run the frontend tests, navigate to '{appDir}/TodoList.Web/ClientApp' and execute the command 'ng test'
 

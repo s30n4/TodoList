@@ -46,7 +46,7 @@ namespace TodoList.Tests.Unit.Application.TodoLists.Commands
             result.Errors.ShouldBeEmpty();
             result.IsSuccessful.ShouldBeTrue();
             result.Result.ShouldBeOfType<MediatR.Unit>();
-            result.Message.ShouldBe("The todo list item was deleted successfully");
+            result.Message.ShouldBe("The to-do item was deleted successfully");
         }
 
         [Test]

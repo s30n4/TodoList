@@ -13,7 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Application", "Tod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Persistence", "TodoList.Persistence\TodoList.Persistence.csproj", "{CE1237A3-1467-4ABF-BF20-FEAC4D87014E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList.Tests", "TodoList.Tests\TodoList.Tests.csproj", "{BE76DFE8-7BF3-4B57-BCBE-69FC3DCBC522}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoList.Tests", "TodoList.Tests\TodoList.Tests.csproj", "{BE76DFE8-7BF3-4B57-BCBE-69FC3DCBC522}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{2167B32E-BAD8-4962-B347-CC8301F23D40}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

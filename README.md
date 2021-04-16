@@ -2,7 +2,7 @@
 
 ## Tools/Framework
 
-- .NET Core 5
+- .NET 5
 - Angular 11
 - Tailwindcss
 - Autofac

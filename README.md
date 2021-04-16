@@ -38,7 +38,7 @@
 
 -	    Press `Ctrl + F5` to launch the WebApi application
 
--	The app should now be running on 'localhost:52436' and 'https:localhost:44392'
+-	The app should now be running on 'localhost:4200'(default Angular port)
 
 ## Testing
 
